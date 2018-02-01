@@ -1,13 +1,15 @@
+const InmutableArray = require('array-inmutable')
+
 function filter (p) {
     const obj = Object.create(this.constructor.prototype)
-    obj.ps = this.ps.concat([p])
+    obj.ps = this.ps.push(p)
     obj.iterable = this.iterable
     return obj
 }
 
 function FilterIterable (iterable) {
     this.iterable = iterable
-    this.ps = []
+    this.ps = InmutableArray([])
 }
 
 function apply (value) {
