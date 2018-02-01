@@ -10,15 +10,28 @@ function FilterIterable (iterable) {
     this.ps = []
 }
 
+function apply (value) {
+    return this.ps.every(p => p(value)) ? {value} : undefined
+}
+
 Object.defineProperties(FilterIterable.prototype, {
     filter: {
         value: filter
     },
     [Symbol.iterator]: {
-        * value () {
-            for (const val of this.iterable) {
-                if (this.ps.every(p => p(val))) {
-                    yield val
+        value () {
+            const self = this
+            const iterator = this.iterable[Symbol.iterator]()
+            let status
+            return {
+                next () {
+                    while (!(status = iterator.next()).done) {
+                        status = apply.call(self, status.value)
+                        if (status) {
+                            return status
+                        }
+                    }
+                    return {done: true}
                 }
             }
         }
