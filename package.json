@@ -1,6 +1,6 @@
 {
   "name": "filter-iterable",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "iterable decorated with filter method",
   "main": "index.js",
   "scripts": {
