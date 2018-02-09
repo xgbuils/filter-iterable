@@ -1,19 +1,21 @@
-const InmutableArray = require('array-inmutable')
+const arrayOf = require('immutable-array.of')
+const push = require('immutable-array.push')
+const every = require('immutable-array.every')
 
 function filter (p) {
     const obj = Object.create(this.constructor.prototype)
-    obj.ps = this.ps.push(p)
+    obj.ps = push(p, this.ps)
     obj.iterable = this.iterable
     return obj
 }
 
 function FilterIterable (iterable) {
     this.iterable = iterable
-    this.ps = InmutableArray([])
+    this.ps = arrayOf([])
 }
 
 function apply (value) {
-    return this.ps.every(p => p(value)) ? {value} : undefined
+    return every(p => p(value), this.ps) ? {value} : undefined
 }
 
 Object.defineProperties(FilterIterable.prototype, {

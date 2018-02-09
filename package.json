@@ -30,7 +30,7 @@
   "devDependencies": {
     "babel-register": "^6.26.0",
     "coveralls": "^3.0.0",
-    "eslint": "^4.16.0",
+    "eslint": "^4.17.0",
     "npm-check": "^5.5.2",
     "nyc": "^11.4.1",
     "pre-commit": "^1.2.2",
@@ -41,6 +41,8 @@
     "run": "test"
   },
   "dependencies": {
-    "array-inmutable": "^0.1.2"
+    "immutable-array.every": "^0.1.0",
+    "immutable-array.of": "^0.1.0",
+    "immutable-array.push": "^0.1.0"
   }
 }
